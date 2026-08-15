@@ -1,5 +1,6 @@
 from fastapi import FastAPI, File, HTTPException, UploadFile
 from app.pdf import validate_pdf, extract_text
+from app.llm import summarize_text
 
 app = FastAPI(title='Tender Summarizer')
 
@@ -20,9 +21,10 @@ async def upload_pdf(file: UploadFile = File(...)):
         )
 
     text = extract_text(content)
+    summary = await summarize_text(text)
 
     return {
         'filename': file.filename,
         'size': len(content),
-        'preview': text[:500]
+        'summary': summary
     }
