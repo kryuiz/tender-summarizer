@@ -26,5 +26,6 @@ async def upload_pdf(file: UploadFile = File(...)):
     return {
         'filename': file.filename,
         'size': len(content),
+        'tl': len(text),
         'summary': summary
     }
