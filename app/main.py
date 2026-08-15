@@ -1,5 +1,5 @@
 from fastapi import FastAPI, File, HTTPException, UploadFile
-from pdf import validate_pdf, extract_text
+from app.pdf import validate_pdf, extract_text
 
 app = FastAPI(title='Tender Summarizer')
 
